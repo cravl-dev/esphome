@@ -69,12 +69,13 @@ RMT_CHANNELS = {
 
 
 def _validate_rmt_channel(value):
+    value = int(value)
     variant = esp32.get_esp32_variant()
     if variant not in RMT_CHANNELS:
         raise cv.Invalid(f"ESP32 variant {variant} does not support RMT.")
     if value not in RMT_CHANNELS[variant]:
         raise cv.Invalid(
-            f"RMT channel {value} is not supported for ESP32 variant {variant}."
+            f"RMT transmit on channel {value} is not supported for ESP32 variant {variant}."
         )
     return value
 
